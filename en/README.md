@@ -88,7 +88,7 @@ skills/40-投稿与返修.md
 
 - **不含任何真实论文**。`工具/samples/` 里的稿件是虚构的，只用于验证脚本；
 - **不含作者信息**。要生成投稿件，先把 `工具/docx_config.example.txt` 复制为 `工具/docx_config.txt`，再填自己的信息；`docx_config.txt` 已被 `.gitignore` 排除，不会误传；
-- **文档与代码分开授权**：文档 CC BY-NC-SA 4.0（禁止商业使用，改编须以同样许可共享），脚本 MIT，见仓库根目录的 [`LICENSE`](../LICENSE)（文档）与 [`LICENSE-MIT`](../LICENSE-MIT)（代码）；
+- **文档与代码分开授权**：文档 CC BY-NC-SA 4.0（禁止商业使用，改编须以同样许可共享），脚本 MIT，见仓库根目录的 [`LICENSE`](../LICENSE)（文档）与 [`docs/代码许可-MIT.txt`](../docs/代码许可-MIT.txt)（代码）；
 - `05-初稿生成法.md` 里的例子是虚构的（垃圾分类两社区对比），与任何真实论文无关。
 
 ---

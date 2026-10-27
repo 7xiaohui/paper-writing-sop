@@ -10,7 +10,7 @@
 
 - 把原「中文论文写作流水线」与「SSCI 英文写作 SOP」合并为一个仓库，分 `zh/`、`en/` 两条线；
 - 新增 `docs/共享原则.md`、`docs/使用边界.md`、根 `README.md`；
-- 新增 `LICENSE`（文档，CC BY-NC-SA 4.0 法律全文）、`LICENSE-MIT`（代码）与 `LICENSE-docs`（中文说明）。
+- 新增 `LICENSE`（文档，CC BY-NC-SA 4.0 法律全文）、`docs/代码许可-MIT.txt`（代码）与 `LICENSE-docs`（中文说明）。
 
 **清理（公开前）**
 
