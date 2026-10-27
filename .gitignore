@@ -1,0 +1,36 @@
+# ───────── Python ─────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# ───────── 本地产物（不入库）─────────
+# 英文线：放稿目录、报告目录、含个人信息的配置
+en/工具/input/*
+!en/工具/input/README.md
+en/工具/output/*
+!en/工具/output/README.md
+en/工具/docx_config.txt
+
+# 中文线：运行时缓存
+zh/工具/__pycache__/
+
+# ───────── 本地私人工作区（永不提交）─────────
+_private/
+_local/
+
+# ───────── Office 临时文件 ─────────
+~$*
+*.tmp
+*.bak
+
+# ───────── 操作系统 ─────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ───────── 编辑器 ─────────
+.vscode/
+.idea/
+*.swp
