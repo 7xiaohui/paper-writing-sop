@@ -30,6 +30,14 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 PY = sys.executable
 
+# Windows CI 的默认 stdout 编码是 cp1252，直接 print 中文会 UnicodeEncodeError。
+# 显式改成 UTF-8，保证本地双击、CI 管道、重定向三种情况都能输出。
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 EN_TOOLS = ROOT / "en" / "工具"
 EN_SCRIPTS = EN_TOOLS / "scripts"
 EN_SAMPLES = EN_TOOLS / "samples"
