@@ -79,7 +79,7 @@ python 工具/核对脚本.py props   论文.docx --dry-run    # 文档属性查
 ## 公开版说明
 
 - 示例与模板均为虚构或通用格式，不含任何真实论文、真实作者信息、访谈记录；
-- 文档 CC BY-NC-SA 4.0（禁止商业使用，改编须以同样许可共享），脚本 MIT，见仓库根目录的 [`LICENSE`](../LICENSE) 与 [`LICENSE-docs`](../LICENSE-docs)；
+- 文档 CC BY-NC-SA 4.0（禁止商业使用，改编须以同样许可共享），脚本 MIT，见仓库根目录的 [`LICENSE`](../LICENSE)（文档）与 [`LICENSE-MIT`](../LICENSE-MIT)（代码）；
 - 这些文件来自真实的论文写作过程，按「哪里反复出错就补哪一条」的方式迭代；版本变更见 [`CHANGELOG.md`](../CHANGELOG.md)。
 
 ---
