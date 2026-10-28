@@ -1,5 +1,7 @@
 # 论文写作 SOP · 中英双语两条产线
 
+> 作者：红湖先生（GitHub @7xiaohui）
+
 > 这不是「让 AI 帮你写论文」，而是把「从有个方向，到返修回来」拆成**可执行、可验收、可复用**的流程。
 > 两条产线：**中文期刊论文**（8 份 SOP ＋ 总纲 ＋ 23 份提示词）、**英文 SSCI 投稿**（9 步 ＋ 5 个检查脚本）。
 
@@ -187,4 +189,4 @@ Design stance: every step has an explicit pass criterion; anything countable is 
 
 ---
 
-<p align="right"><sub>v1.0 ｜ 2026-10 ｜ 个人工作流公开版，不是产品，也不承诺结果</sub></p>
+<p align="right"><sub>v1.0 ｜ 2026-10 ｜ 作者：红湖先生（@7xiaohui）｜ 个人工作流公开版，不是产品，也不承诺结果</sub></p>
