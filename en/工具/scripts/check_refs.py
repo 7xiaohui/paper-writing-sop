@@ -33,7 +33,7 @@ def read_any(p):
         import html as _html
         with zipfile.ZipFile(p) as z:
             xml = z.read("word/document.xml").decode("utf-8", "replace")
-        xml = xml.replace("</w:p>", "\n").replace("</w:tr>", "\n").replace("</w:tc>", " ")
+        xml = xml.replace("</w:p>", "\n\n").replace("</w:tr>", "\n").replace("</w:tc>", " ")
         return _html.unescape(re.sub(r"<[^>]+>", "", xml))
     return p.read_text(encoding="utf-8-sig", errors="replace")
 
@@ -145,7 +145,7 @@ def main():
         missing = sorted(n for n in cited_names(body)
                          if not re.search(r"\b%s\b" % re.escape(n), refs_low, re.I))
 
-        ok = not uncited and not missing and not no_doi and not dup
+        ok = not uncited and not missing and not dup
         all_ok = all_ok and ok
 
         rep = ["# 参考文献检查报告", "", "文件：`%s`" % f.name, "",
@@ -155,7 +155,7 @@ def main():
         rep += (["- " + e[:120] for e in uncited] or ["无。"])
         rep += ["", "## 2 正文引了但表中找不到姓氏：%d" % len(missing), ""]
         rep += (["- " + m for m in missing] or ["无。"])
-        rep += ["", "## 3 缺 DOI：%d" % len(no_doi), ""]
+        rep += ["", "## 3 缺 DOI（建议项，不计入 FAIL；书籍/中文条目可无）：%d" % len(no_doi), ""]
         rep += (["- " + e[:120] for e in no_doi] or ["无。"])
         rep += ["", "## 4 疑似重复条目：%d" % len(dup), ""]
         rep += (["- " + e[:120] for e in dup] or ["无。"])
