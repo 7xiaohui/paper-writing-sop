@@ -12,6 +12,7 @@ en/工具/input/*
 en/工具/output/*
 !en/工具/output/README.md
 en/工具/docx_config.txt
+en/docx_config.txt
 
 # 中文线：运行时缓存
 zh/工具/__pycache__/

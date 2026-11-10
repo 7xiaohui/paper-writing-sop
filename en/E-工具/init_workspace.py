@@ -66,7 +66,7 @@ STUB_MARKER = "<!-- stub: 未填写。填完请删除本行。 -->"
 
 MD_TEMPLATE = """# {title}
 
-> 第 {step} 步「{step_name}」产物 ｜ 填法见 `en-v2/{doc}`（本仓库第 {step} 步正文）
+> 第 {step} 步「{step_name}」产物 ｜ 填法见 `en/{doc}`（本仓库第 {step} 步正文）
 > 判据：{criteria}
 
 {marker}
@@ -160,7 +160,7 @@ def main() -> int:
     made_dirs, made_files = build_tree(root, args.title)
     print(f"工作区：{root}")
     print(f"新建目录 {made_dirs} 个，新建文件 {made_files} 个（已存在的已跳过）")
-    print("下一步：读 en-v2/01-起步.md，填 00-锚点.md 与 01-起步/ 三件")
+    print("下一步：读 en/01-起步.md，填 00-锚点.md 与 01-起步/ 三件")
     print(f"查进度：python E-工具/check_workspace.py {root}")
     return 0
 

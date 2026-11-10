@@ -7,7 +7,7 @@
     python tests/verify.py
 
 它做两件事：
-  1. 英文线（v4.0）：
+  1. 英文线（v5.0）：
      - init_workspace.py 建区后，check_workspace.py 能读出来；
      - check_freeze.py 对干净样本 exit 0、对脏样本 exit 1；
   2. 中文线：用 fixtures/zh 下的干净样本与脏样本，断言 refs / marks / punct
@@ -71,7 +71,7 @@ def tail(text: str, n: int = 240) -> str:
 # ---------- 英文线 ----------
 
 def verify_en() -> None:
-    print("\n[英文线 v4.0] 建区 / 进度 / 清稿机检")
+    print("\n[英文线 v5.0] 建区 / 进度 / 清稿机检")
 
     with tempfile.TemporaryDirectory(prefix="sop_en_") as td:
         space = Path(td) / "paper-01"

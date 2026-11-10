@@ -22,14 +22,14 @@ python E-工具\init_workspace.py paper-01
 python E-工具\check_workspace.py paper-01
 
 # 第 7 步：清稿后机检
-python E-工具\check_freeze.py paper-01\06-清稿\中文-冻结-v1.md
+python E-工具\check_freeze.py paper-01\07-清稿\中文-冻结-v1.md
 
 # 第 10 步：先生成 docx（输入是英文定稿 md，输出到投稿包）
-# 首次用：把 docx_config.example.txt 复制成 docx_config.txt 并填作者信息
-python E-工具\build_docx.py paper-01\07-英译 paper-01\09-投稿包
+# 首次用：把 docx_config.example.txt 复制为 en/docx_config.txt 并填作者信息（脚本从 en/ 根目录读取）
+python E-工具\build_docx.py paper-01\08-英译 paper-01\10-投稿包
 
 # 再清元数据（build 之后跑）
-python E-工具\scrub_meta.py paper-01\09-投稿包
+python E-工具\scrub_meta.py paper-01\10-投稿包
 ```
 
 ## 依赖
@@ -47,4 +47,4 @@ python E-工具\scrub_meta.py paper-01\09-投稿包
 
 ---
 
-*v2 样张 ｜ 2026-11-10*
+*v5.0 ｜ 2026-11-11*

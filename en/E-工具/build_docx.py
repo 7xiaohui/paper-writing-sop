@@ -6,7 +6,8 @@
   4 <名>_图注表.docx
 并清理文档属性（生成器名 / 缩略图 / 修订痕迹）。
 用法：python build_docx.py [输入目录] [输出目录]
-需要：python-docx（本机已装；若报 ModuleNotFoundError，双击 安装依赖.bat）
+配置：把 en/E-工具/docx_config.example.txt 复制为 en/docx_config.txt 并填作者信息。
+需要：python-docx（缺依赖时执行 python -m pip install python-docx）。
 """
 import re
 import sys
@@ -27,7 +28,7 @@ try:
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.oxml.ns import qn
 except ModuleNotFoundError:
-    print("缺少 python-docx。请双击：工具\\安装依赖.bat")
+    print("缺少 python-docx。请执行：python -m pip install python-docx")
     sys.exit(2)
 
 APP_XML = (
