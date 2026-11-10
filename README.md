@@ -94,8 +94,10 @@ paper-writing-sop/
 │   └── 工具/核对脚本.py     引用映射 / 数字比对 / 标记扫描 / 标点 / docx 属性
 ├── en/                     英文 SSCI 产线
 │   ├── 00-总览.md … 07-失败模式库.md
+│   ├── 08-对抗审稿法.md     命题反例、文内自拆、审稿分工与分级
+│   ├── 提示词/             12 份可直接粘贴的执行卡
 │   ├── skills/             6 份执行手册
-│   └── 工具/               5 个检查脚本 ＋ 投稿件生成器 ＋ 正负样本
+│   └── 工具/               6 项检查脚本 ＋ 投稿件生成器 ＋ 正负样本
 ├── docs/                   共用原则、使用边界、修改说明
 └── tests/                  样本验证（verify.py）与隐私扫描（scan_private.py）
 ```
@@ -166,7 +168,7 @@ python tests/scan_private.py
 若这份东西对你有用，按下面任一方式引用即可：
 
 ```
-论文写作 SOP（中英双语两条产线），v2.0，2026.
+论文写作 SOP（中英双语两条产线），v3.0，2026.
 https://github.com/<your-name>/paper-writing-sop
 ```
 
@@ -189,4 +191,4 @@ Design stance: every step has an explicit pass criterion; anything countable is 
 
 ---
 
-<p align="right"><sub>v2.0 ｜ 2026-10 ｜ 作者：红湖先生（@7xiaohui）｜ 个人工作流公开版，不是产品，也不承诺结果</sub></p>
+<p align="right"><sub>v3.0 ｜ 2026-11 ｜ 作者：红湖先生（@7xiaohui）｜ 个人工作流公开版，不是产品，也不承诺结果</sub></p>
