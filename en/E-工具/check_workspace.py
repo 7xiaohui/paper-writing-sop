@@ -136,9 +136,9 @@ def main() -> int:
         name, doc = STEPS[current]
         print(f"当前进度：第 {current} 步「{name}」")
         if pending[current]["缺"]:
-            print(f"下一步：读 en-v2/{doc}，产出 {pending[current]['缺'][0]}")
+            print(f"下一步：读 en/{doc}，产出 {pending[current]['缺'][0]}")
         else:
-            print(f"下一步：读 en-v2/{doc}，填完 {pending[current]['未填'][0]}（并删掉 stub 标记行）")
+            print(f"下一步：读 en/{doc}，填完 {pending[current]['未填'][0]}（并删掉 stub 标记行）")
         print("提醒：文件存在 ≠ 内容合格。每个判据在对应正文的“判据”一节。")
 
     if args.strict and current is not None:
