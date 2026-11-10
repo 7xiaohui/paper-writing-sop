@@ -3,7 +3,7 @@
 > 作者：红湖先生（GitHub @7xiaohui）
 
 > 这不是「让 AI 帮你写论文」，而是把「从有个方向，到返修回来」拆成**可执行、可验收、可复用**的流程。
-> 两条产线：**中文期刊论文**（8 份 SOP ＋ 总纲 ＋ 26 份提示词）、**英文 SSCI 投稿**（9 步 ＋ 6 份执行手册 ＋ 5 个检查脚本）。
+> 两条产线：**中文期刊论文**（8 份 SOP ＋ 总纲 ＋ 26 份提示词）、**英文 SSCI 投稿 v4.0**（5 阶段 11 步 ＋ 检查清单/模板/失败库/提示词卡/示例 ＋ 5 个脚本）。
 
 ---
 
@@ -27,8 +27,8 @@
 | | **中文线** [`zh/`](zh/) | **英文线** [`en/`](en/) |
 |---|---|---|
 | 适用 | 非实证中文期刊论文：政策对策、描述分析、理论构建 | 中文母语者的英文投稿：概念型、比较型、对策型、小调查 |
-| 主线 | 8 份可单独执行的 SOP ＋ 总纲 | 9 步主流程 ＋ 6 份执行手册（skills） |
-| 配套 | 26 份提示词、4 张模板、1 个核对脚本 | 8 张模板、5 个检查脚本、投稿件生成器、正负样本 |
+| 主线 | 8 份可单独执行的 SOP ＋ 总纲 | 5 阶段 11 步，一步一产物，产物即进度 |
+| 配套 | 26 份提示词、4 张模板、1 个核对脚本 | 20 张模板、33 条失败库、18 张提示词卡、5 个脚本（建区/查进度/清稿/生成 docx/清元数据） |
 | 入口 | [`zh/README.md`](zh/README.md) | [`en/README.md`](en/README.md) |
 | 适合谁 | 中文写作、需要逐环节验收 | 中文定稿后要出英文、要投 SSCI |
 
@@ -69,15 +69,23 @@ python 工具/核对脚本.py refs 正文.md 参考文献.txt
 
 ### 英文线（5 分钟）
 
-1. 打开 [`en/00-总览.md`](en/00-总览.md)，看九步全图；
-2. 按「你现在的状态」表，从对应那一步进入；
-3. 把稿子放进 `en/工具/input/`，双击 `run_all.bat`（Windows），或直接跑脚本：
+1. 打开 [`en/00-总览.md`](en/00-总览.md)，看 5 阶段 11 步全图和最短路径；
+2. 第 1 步先一键建工作区，再按目录判断进度：
 
 ```bash
-python en/工具/scripts/check_counts.py en/工具/input en/工具/output
+python en/E-工具/init_workspace.py paper-01
+python en/E-工具/check_workspace.py paper-01
 ```
 
-> 脚本只依赖 Python 标准库；`build_docx.py` 另需 `python-docx`。
+3. 提示词卡去 [`en/D-提示词/`](en/D-提示词/)，一卡一文件，直接喂 AI；
+4. 第 10 步从英文定稿 md 生成四份投稿件并清元数据：
+
+```bash
+python en/E-工具/build_docx.py paper-01/07-英译 paper-01/09-投稿包
+python en/E-工具/scrub_meta.py paper-01/09-投稿包
+```
+
+> 脚本只依赖 Python；`build_docx.py` / `scrub_meta.py` 另需 `python-docx`。
 
 ---
 
@@ -92,12 +100,13 @@ paper-writing-sop/
 │   ├── 模板/               覆盖度线索表、对象映射表、修改台账等
 │   ├── 示例-陕西壁画迁移到钧瓷.md
 │   └── 工具/核对脚本.py     引用映射 / 数字比对 / 标记扫描 / 标点 / docx 属性
-├── en/                     英文 SSCI 产线
-│   ├── 00-总览.md … 07-失败模式库.md
-│   ├── 08-对抗审稿法.md     命题反例、文内自拆、审稿分工与分级
-│   ├── 提示词/             12 份可直接粘贴的执行卡
-│   ├── skills/             6 份执行手册
-│   └── 工具/               6 项检查脚本 ＋ 投稿件生成器 ＋ 正负样本
+├── en/                     英文 SSCI 产线 v4.0
+│   ├── 00-总览.md … 11-投递与返修.md
+│   ├── A-检查清单.md / B-模板.md / C-失败模式库.md
+│   ├── D-提示词/           13 张主卡 ＋ 5 张专卡，一卡一文件
+│   ├── E-工具/             建区 / 查进度 / 清稿 / 生成 docx / 清元数据
+│   ├── F-工作区模板/  G-示例/
+│   └── README.md
 ├── docs/                   共用原则、使用边界、修改说明
 └── tests/                  样本验证（verify.py）与隐私扫描（scan_private.py）
 ```
@@ -112,16 +121,9 @@ paper-writing-sop/
 python tests/verify.py
 ```
 
-`verify.py` 会做两件事：
+`verify.py` 会用中文线的固定样本，断言 `refs` / `marks` / `punct` 在干净样本上零命中、在脏样本上能报出问题。
 
-1. 把 `en/工具/samples/good.md` 和 `bad.md` 分别喂给 5 个检查脚本，断言 **good 全过、bad 至少 5 项失败**；
-2. 用中文线的固定样本，断言 `refs` / `marks` / `punct` 在干净样本上零命中、在脏样本上能报出问题。
-
-预期输出结尾为：
-
-```
-==== 全部通过：英文线 10/10，中文线 6/6 ====
-```
+> 英文线 v3 的正负样本与五个检查脚本已随 `en-v1-archive/` 归档；v4.0 的机检口径收在 `en/E-工具/` 三个 Python 脚本里（建区幂等、进度三态、清稿六类），并在临时目录回归通过。
 
 > Windows 用户也可以直接双击仓库根目录的 `run_checks.bat`：它会依次跑验证和隐私扫描，并停住窗口，不会一闪而过。
 
@@ -130,8 +132,6 @@ python tests/verify.py
 ```bash
 python tests/scan_private.py
 ```
-
-英文线的真实记录（不是样本，是一篇 7,441 词 / 75 条文献的英文稿）：五个脚本依次抓出了摘要与正文发现项数不一致、正文引了但文献表没有的条目、17 条未引用文献、14 条缺 DOI、1 处人称混用等。**脚本会误报，也会漏报**——它的定位是缩小人工核对范围，不是替代人。
 
 ---
 
@@ -168,7 +168,7 @@ python tests/scan_private.py
 若这份东西对你有用，按下面任一方式引用即可：
 
 ```
-论文写作 SOP（中英双语两条产线），v3.0，2026.
+论文写作 SOP（中英双语两条产线），v4.0，2026.
 https://github.com/<your-name>/paper-writing-sop
 ```
 
@@ -185,10 +185,10 @@ https://github.com/<your-name>/paper-writing-sop
 Two field-tested, checkable workflows for academic writing, built for a Chinese-first author:
 
 - **`zh/`** — eight SOPs for non-empirical Chinese journal papers: topic screening, literature and fact registers, type-aware drafting, citation and trace verification, submission packaging. 23 copy-paste prompts, 4 templates, 1 verification script.
-- **`en/`** — a 9-step pipeline for English SSCI submissions: venue fit, literature triage, argument-first drafting, translation checks, anonymised submission files. 5 checkers with positive/negative samples, a docx builder.
+- **`en/`** (v4.0) — a 5-phase, 11-step pipeline for English SSCI submissions, built for a Chinese-first author: workspace scaffolding, venue fit, two registers (literature + fact), claim–evidence ledger, argument-first drafting, pre-translation freeze, segment-wise translation with back-translation checks, AI-trace cleanup, anonymised submission files. 20 templates, a 33-entry failure library, 18 copy-paste prompt cards, and 5 scripts (workspace init, progress check, freeze lint, docx builder, metadata scrub).
 
 Design stance: every step has an explicit pass criterion; anything countable is checked by script, not by eye; the reviewer never shares context with the writer. The docs are CC BY-NC-SA 4.0 (non-commercial, share-alike), the code is MIT. Run `python tests/verify.py` to reproduce the sample checks.
 
 ---
 
-<p align="right"><sub>v3.0 ｜ 2026-11 ｜ 作者：红湖先生（@7xiaohui）｜ 个人工作流公开版，不是产品，也不承诺结果</sub></p>
+<p align="right"><sub>v4.0 ｜ 2026-11 ｜ 作者：红湖先生（@7xiaohui）｜ 个人工作流公开版，不是产品，也不承诺结果</sub></p>
